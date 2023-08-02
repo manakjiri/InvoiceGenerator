@@ -562,11 +562,12 @@ class ProformaInvoice(SimpleInvoice):
         if self.invoice.date:
             items.append((LEFT * mm, '%s: %s' % (_(u'Date of exposure'), self.invoice.date)))
         if self.invoice.payback:
-            items.append((LEFT * mm, '%s: %s' % (_(u'Payback'), self.invoice.payback)))
+            items.append((LEFT * mm, '%s: %s' % (_(u'Due date'), self.invoice.payback)))
+        if self.invoice.taxable_date:
+            items.append((LEFT * mm, '%s: %s' % (_(u'Taxable date'), self.invoice.taxable_date)))
 
         if self.invoice.paytype:
-            items.append((LEFT * mm, '%s: %s' % (_(u'Paytype'),
-                                                 self.invoice.paytype)))
+            items.append((LEFT * mm, '%s: %s' % (_(u'Paytype'), self.invoice.paytype)))
 
         for item in items:
             self.pdf.drawString(item[0], top * mm, item[1])
